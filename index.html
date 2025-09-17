@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Aniversário!</title>
+  <style>
+    body {
+      margin: 0;
+      background: #b23a3a;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    .mj {
+      width: 300px;
+      height: auto;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      background: #6d1414;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ff4c4c;
+    }
+
+    /* Confete */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      top: -10px;
+      animation: fall 4s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Feliz Aniversário, Lully!! 🎉</h1>
+
+  <!-- Moonwalker -->
+  <img src="seu-gif.gif" alt="Michael Jackson Moonwalk" class="mj">
+
+  <!-- Botões -->
+  <div class="buttons">
+    <button onclick="toggleMusic()">Play / Pause Música</button>
+  </div>
+
+  <!-- Música -->
+  <audio id="music" loop>
+    <source src="sua-musica.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Música
+    function toggleMusic() {
+      let music = document.getElementById("music");
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    // Criar confetes
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      document.body.appendChild(confetti);
+
+      confetti.style.left = Math.random() * window.innerWidth + "px";
+      confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+      setTimeout(() => {
+        confetti.remove();
+      }, 5000);
+    }
+
+    setInterval(createConfetti, 200);
+  </script>
+</body>
+</html>
