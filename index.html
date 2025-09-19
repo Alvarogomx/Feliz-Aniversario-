@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário!</title>
+    <style>
+        body {
+            margin: 0;
+            background: #b23a3a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            transition: background 1s ease-in-out;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        .mj {
+            width: 300px;
+            height: auto;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            background: #6d1414;
+            border: none;
+            padding: 12px 25px;
+            margin: 10px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ff4c4c;
+        }
+
+        /* Questionário */
+        .quiz {
+            display: none;
+            background: rgba(0,0,0,0.6);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: left;
+            max-width: 400px;
+        }
+
+        .quiz h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .quiz label {
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+
+        /* Galeria de Fotos */
+        .photo-gallery {
+            display: none;
+            padding: 20px;
+            max-width: 800px;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #b23a3a;
+            box-sizing: border-box;
+        }
+
+        .photo-gallery h1, .photo-gallery h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gallery img, .gallery video {
+            max-width: 100%;
+            height: auto;
+            border: 5px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .final-message {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 12px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .outro-message {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 12px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .final-outro {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 12px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Relógio do Tempo */
+        .timer-title {
+            margin-top: 40px;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .timer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 12px;
+        }
+
+        .timer-block {
+            background-color: #6d1414;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timer-value {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .timer-label {
+            font-size: 0.8em;
+            text-transform: uppercase;
+        }
+
+        /* Confete */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            top: -10px;
+            animation: fall 4s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="quiz-section">
+        <h1>Vamos Começar, Vitoria!! 🎉</h1>
+        <h1>Você está pronta? 🎉</h1>
+
+        <img src="https://raw.githubusercontent.com/Alvarogomx/Feliz-Aniversario-/main/mik1.gif" alt="Michael Jackson Moonwalk" class="mj">
+
+        <div class="buttons">
+            <button onclick="toggleMusic()">🎶 Comece por aqui meu amor </button>
+            <button onclick="showQuiz(1)">➡️ Vamos Prosseguir</button>
+        </div>
+
+        <div id="quiz1" class="quiz">
+            <h2>Antes de prosseguir... responda, em que ano nos conhecemos? 😁</h2>
+            <form>
+                <label><input type="radio" name="q1"> 2019 </label>
+                <label><input type="radio" name="q1"> 2018 </label>
+                <label><input type="radio" name="q1"> 2020 </label>
+                <label><input type="radio" name="q1"> Não te conheço menino </label>
+                <button type="button" onclick="nextQuestion(1)">Enviar Resposta</button>
+            </form>
+        </div>
+
+        <div id="quiz2" class="quiz">
+            <h2>Qual é o meu sobrenome? 😎</h2>
+            <form>
+                <label><input type="radio" name="q2"> Jose </label>
+                <label><input type="radio" name="q2"> Gomes </label>
+                <label><input type="radio" name="q2"> Pereira </label>
+                <label><input type="radio" name="q2"> Ronaldo </label>
+                <label><input type="radio" name="q2"> Messi </label>
+                <button type="button" onclick="nextQuestion(2)">Enviar Resposta</button>
+            </form>
+        </div>
+
+        <div id="quiz3" class="quiz">
+            <h2>Você está curtindo a surpresa? 🎤</h2>
+            <form>
+                <label><input type="radio" name="q3"> Eu esperava mais </label>
+                <label><input type="radio" name="q3"> Sim!!</label>
+                <label><input type="radio" name="q3"> Claro!!</label>
+                <label><input type="radio" name="q3"> Muito!! 🎉</label>
+                <button type="button" onclick="nextQuestion(3)">Enviar Resposta</button>
+            </form>
+        </div>
+
+        <div id="quiz4" class="quiz">
+            <h2>Acha que podemos seguir e parar de brincadeira ? </h2>
+            <form>
+                <label><input type="radio" name="q4"> Já tô saturada, quero macarrão... </label>
+                <label><input type="radio" name="q4"> Sim!!</label>
+                <label><input type="radio" name="q4"> Claro! </label>
+                <label><input type="radio" name="q4"> Xuxu agiliza, quero ver </label>
+                <button type="button" onclick="finishQuiz()">Enviar Resposta</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="gallery-section" class="photo-gallery">
+        <h1>🎉 Feliz Aniversário, Vitoria! 🎉</h1>
+        <h2>Aqui estão algumas lembranças especiais para você:</h2>
+        
+        <div class="gallery">
+            <img src="https://raw.githubusercontent.com/Alvarogomx/Feliz-Aniversario-/main/foto1.jpeg" alt="Descrição da Foto 1">
+            <img src="https://raw.githubusercontent.com/Alvarogomx/Feliz-Aniversario-/main/foto2.jpeg" alt="Descrição da Foto 2">
+            <img src="https://raw.githubusercontent.com/Alvarogomx/Feliz-Aniversario-/main/foto3.jpeg" alt="Descrição da Foto 3">
+        </div>
+
+        <div class="final-message">
+            <p>Vitoria, cada momento ao seu lado é um presente. As risadas, as conversas, as aventuras, os cortes de cabelos a famosa franja(nos entendemos)...</p>
+            <p>São essas memórias que tornam a vida muito mais colorida e significativa. São as experiencias que eu vivi ao seu lado,sou muito grato por ter você na minha vida e por todas as histórias que ainda vamos criar.</p>
+            <p>Que seu dia seja tão incrível quanto você!</p>
+        </div>
+
+        <div class="gallery">
+            <img src="https://raw.githubusercontent.com/Alvarogomx/Feliz-Aniversario-/main/foto4.jpeg" alt="Descrição da Foto 4">
+            <img src="https://raw.githubusercontent.com/Alvarogomx/Feliz-Aniversario-/main/foto5.jpeg" alt="Descrição da Foto 5">
+            <img src="https://raw.githubusercontent.com/Alvarogomx/Feliz-Aniversario-/main/foto6.jpeg" alt="Descrição da Foto 6">
+        </div>
+        
+        <div class="outro-message">
+            <p>Sempre deixando qualquer ambiente a sua cara, e sendo divertida e simples, alegre e feliz, é uma das milhares coisas que eu amo em você...</p>
+            <p>Hoje não é apenas o dia do seu nascimento, é o dia que nasceu a minha pessoa, o meu lugar favorito... </p>
+        </div>
+
+        <div class="timer-title">
+            Eu já te aturo, kkkk quis dizer, aproveito você em minha vida há exatamente:
+        </div>
+        <div class="timer-container">
+            <div class="timer-block">
+                <span id="years" class="timer-value">0</span>
+                <span class="timer-label">Anos</span>
+            </div>
+            <div class="timer-block">
+                <span id="days" class="timer-value">0</span>
+                <span class="timer-label">Dias</span>
+            </div>
+            <div class="timer-block">
+                <span id="hours" class="timer-value">0</span>
+                <span class="timer-label">Horas</span>
+            </div>
+            <div class="timer-block">
+                <span id="minutes" class="timer-value">0</span>
+                <span class="timer-label">Minutos</span>
+            </div>
+            <div class="timer-block">
+                <span id="seconds" class="timer-value">0</span>
+                <span class="timer-label">Segundos</span>
+            </div>
+        </div>
+        
+        <div class="gallery">
+            <video controls>
+                <source src="https://raw.githubusercontent.com/Alvarogomx/Feliz-Aniversario-/main/video.mp4" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+        </div>
+
+        <div class="final-outro">
+            <p>Espero que você tenha gostado da surpresa! Foi feita com todo o carinho do mundo para você. 🥰</p>
+            <p>Que seu dia seja repleto de sorrisos, alegrias e que o futuro te reserve o que há de melhor.</p>
+            <p>Com todo o meu amor, **feliz aniversário, meu amor!** ❤️🎉</p>
+        </div>
+    </div>
+
+    <audio id="music" autoplay loop muted>
+        <source src="https://raw.githubusercontent.com/Alvarogomx/Feliz-Aniversario-/main/audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Música
+        function toggleMusic() {
+            let music = document.getElementById("music");
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+
+        // Mostrar quiz específico
+        function showQuiz(num) {
+            document.getElementById("quiz" + num).style.display = "block";
+        }
+
+        // Próxima pergunta
+        function nextQuestion(current) {
+            alert("Boa resposta! 🎉");
+            document.getElementById("quiz" + current).style.display = "none";
+            let next = current + 1;
+            let nextQuiz = document.getElementById("quiz" + next);
+            if (nextQuiz) {
+                nextQuiz.style.display = "block";
+            }
+        }
+
+        // Finalizar quiz e mostrar a galeria de fotos
+        function finishQuiz() {
+            alert("Todas certas! 👑 Agora vamos para a próxima fase!");
+            document.getElementById("quiz-section").style.display = "none";
+            document.getElementById("gallery-section").style.display = "block";
+            document.body.style.overflow = "auto";
+            startTimer();
+        }
+
+        // Relógio do Tempo
+        function startTimer() {
+            const startDate = new Date("October 7, 2018 00:00:00");
+
+            function updateTimer() {
+                const now = new Date();
+                const diff = now.getTime() - startDate.getTime();
+
+                // Cálculos
+                const years = now.getFullYear() - startDate.getFullYear();
+                const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const remainingDays = totalDays % 365;
+                const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+                const minutes = Math.floor(diff / (1000 * 60)) % 60;
+                const seconds = Math.floor(diff / 1000) % 60;
+
+                // Atualizar o DOM
+                document.getElementById('years').textContent = years;
+                document.getElementById('days').textContent = remainingDays;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+
+            setInterval(updateTimer, 1000);
+            updateTimer();
+        }
+
+        // Confete
+        function createConfetti() {
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            document.body.appendChild(confetti);
+
+            confetti.style.left = Math.random() * window.innerWidth + "px";
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+
+        setInterval(createConfetti, 200);
+
+        // Forçar autoplay mutado -> ativar som
+        window.addEventListener("load", () => {
+            let music = document.getElementById("music");
+            music.muted = false;
+            music.play().catch(() => {
+                console.log("Autoplay bloqueado, precisa clicar no botão 🎶");
+            });
+        });
+    </script>
+</body>
+</html>
