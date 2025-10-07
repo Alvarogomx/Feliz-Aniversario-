@@ -312,7 +312,7 @@
         </div>
         
         <div class="gallery">
-            <video controls>
+            <video id="birthdayVideo" controls>
                 <source src="https://raw.githubusercontent.com/Alvarogomx/Feliz-Aniversario-/120f9c21fffe2e5bbabbf7413b426ec82cb8f48c/video.mp4">
                 Seu navegador não suporta a tag de vídeo.
             </video>
@@ -418,10 +418,33 @@
                 console.log("Autoplay bloqueado, precisa clicar no botão 🎶");
             });
         });
+        
+        // --- NOVO CÓDIGO ADICIONADO ---
+        // Controla a música quando o vídeo é reproduzido
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('birthdayVideo');
+            const music = document.getElementById('music');
+
+            if (video && music) {
+                // Pausa a música quando o vídeo começa
+                video.addEventListener('play', () => {
+                    if (!music.paused) {
+                        music.pause();
+                    }
+                });
+
+                // Opcional: Retoma a música quando o vídeo é pausado ou termina
+                video.addEventListener('pause', () => {
+                    music.play();
+                });
+                
+                video.addEventListener('ended', () => {
+                    music.play();
+                });
+            }
+        });
+
     </script>
 </body>
 
 </html>
-
-
-
